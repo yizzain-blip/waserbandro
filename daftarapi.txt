@@ -1,0 +1,692 @@
+DAFTAR API ENDPOINTS WASERBA
+============================
+
+1. PRODUCTS API
+----------------
+
+GET /api/products
+- Deskripsi: Mendapatkan daftar semua produk
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_produk": 1,
+            "nama_produk": "Nama Produk",
+            "harga": 50000,
+            "stok": 10,
+            "foto": "nama_file.jpg",
+            "id_toko": 1,
+            "lat_toko": -7.1234,
+            "long_toko": 110.1234,
+            "nama_toko": "Nama Toko"
+        }
+    ]
+}
+
+GET /api/products/search?q=query
+- Deskripsi: Mencari produk berdasarkan query
+- Parameter: q (string) - kata kunci pencarian
+- Response JSON:
+{
+    "status": "success", 
+    "data": [
+        {
+            "id_produk": 1,
+            "nama_produk": "Nama Produk",
+            "harga": 50000,
+            "stok": 10,
+            "foto": "nama_file.jpg",
+            "id_toko": 1,
+            "lat_toko": -7.1234,
+            "long_toko": 110.1234,
+            "nama_toko": "Nama Toko"
+        }
+    ]
+}
+
+            GET /api/products/{id}
+            - Deskripsi: Mendapatkan detail produk berdasarkan ID
+            - Parameter: id (integer) - ID produk
+            - Response JSON:
+            {
+                "status": "success",
+                "data": {
+                    "id_produk": 1,
+                    "nama_produk": "Nama Produk",
+                    "harga": 50000,
+                    "stok": 10,
+                    "foto": "nama_file.jpg",
+                    "id_toko": 1,
+                    "lat_toko": -7.1234,
+                    "long_toko": 110.1234,
+                    "nama_toko": "Nama Toko"
+                }
+            }
+
+GET /api/products/category/{id}
+- Deskripsi: Mendapatkan produk berdasarkan kategori
+- Parameter: id (integer) - ID kategori
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_produk": 1,
+            "nama_produk": "Nama Produk",
+            "harga": 50000,
+            "stok": 10,
+            "foto": "nama_file.jpg",
+            "id_toko": 1,
+            "lat_toko": -7.1234,
+            "long_toko": 110.1234,
+            "nama_toko": "Nama Toko"
+        }
+    ]
+}
+
+GET /api/shops/{identifier}
+- Deskripsi: Mendapatkan produk berdasarkan toko
+- Parameter: identifier (string) - identifier toko
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_produk": 1,
+            "nama_produk": "Nama Produk",
+            "harga": 50000,
+            "stok": 10,
+            "foto": "nama_file.jpg",
+            "id_toko": 1,
+            "lat_toko": -7.1234,
+            "long_toko": 110.1234,
+            "nama_toko": "Nama Toko"
+        }
+    ]
+}
+
+GET /api/shop/user/{id}
+- Deskripsi: Mengecek apakah user memiliki toko (untuk seller dashboard)
+- Parameter: id (integer) - ID user
+- Response JSON:
+{
+    "status": "success",
+    "data": {
+        "id_toko": 1,
+        "nama_toko": "Nama Toko",
+        "deskripsi": "Deskripsi toko"
+    }
+}
+
+POST /api/shop/update
+- Deskripsi: Update profil toko
+- Request Body: Form data profil toko
+- Response JSON:
+{
+    "status": "success",
+    "message": "Shop profile updated successfully"
+}
+
+2. CATEGORIES API
+------------------
+
+GET /api/categories
+- Deskripsi: Mendapatkan daftar semua kategori
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_kategori": 1,
+            "nama_kategori": "Elektronik",
+            "icon": "icon.png"
+        }
+    ]
+}
+
+3. CART API
+------------
+
+GET /api/cart
+- Deskripsi: Mendapatkan daftar item di keranjang
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_cart": 1,
+            "id_produk": 1,
+            "nama_produk": "Nama Produk",
+            "harga": 50000,
+            "jumlah": 2,
+            "subtotal": 100000
+        }
+    ]
+}
+
+POST /api/cart/add
+- Deskripsi: Menambah item ke keranjang
+- Request Body: id_produk, jumlah
+- Response JSON:
+{
+    "status": "success",
+    "message": "Item added to cart"
+}
+
+POST /api/cart/update
+- Deskripsi: Update jumlah item di keranjang
+- Request Body: id_cart, jumlah
+- Response JSON:
+{
+    "status": "success",
+    "message": "Cart updated"
+}
+
+POST /api/cart/remove
+- Deskripsi: Menghapus item dari keranjang
+- Request Body: id_cart
+- Response JSON:
+{
+    "status": "success",
+    "message": "Item removed from cart"
+}
+
+GET /api/cart/count
+- Deskripsi: Mendapatkan jumlah item di keranjang
+- Response JSON:
+{
+    "status": "success",
+    "count": 5
+}
+
+POST /api/cart/clear
+- Deskripsi: Mengosongkan keranjang
+- Response JSON:
+{
+    "status": "success",
+    "message": "Cart cleared"
+}
+
+4. AUTHENTICATION API
+---------------------
+
+POST /api/auth/login
+- Deskripsi: Login user
+- Request Body: email, password
+- Response JSON:
+{
+    "status": "success",
+    "message": "Login successful",
+    "data": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "role": "user"
+    }
+}
+
+POST /api/auth/register
+- Deskripsi: Registrasi user baru
+- Request Body: name, email, password, phone
+- Response JSON:
+{
+    "status": "success",
+    "message": "Registration successful"
+}
+
+POST /api/auth/forgot-password
+- Deskripsi: Lupa password
+- Request Body: email
+- Response JSON:
+{
+    "status": "success",
+    "message": "Password reset email sent"
+}
+
+POST /api/auth/logout
+- Deskripsi: Logout user
+- Response JSON:
+{
+    "status": "success",
+    "message": "Logout successful"
+}
+
+GET /api/auth/me
+- Deskripsi: Mendapatkan data user yang sedang login
+- Response JSON:
+{
+    "status": "success",
+    "data": {
+        "id": 1,
+        "name": "",
+        "email": "",
+        "phone": "",
+        "role": ""
+    }
+}
+
+5. USER PROFILE API
+------------------
+
+POST /api/user/profile
+- Deskripsi: Update profil user
+- Request Body: name, email, phone, address
+- Response JSON:
+{
+    "status": "success",
+    "message": "Profile updated successfully"
+}
+
+GET /api/user/addresses
+- Deskripsi: Mendapatkan daftar alamat user
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_alamat": 1,
+            "alamat": "Jl. Contoh No. 123",
+            "kota": "Kebumen",
+            "provinsi": "Jawa Tengah",
+            "kode_pos": "54321"
+        }
+    ]
+}
+
+POST /api/user/address
+- Deskripsi: Menambah alamat baru
+- Request Body: alamat, kota, provinsi, kode_pos
+- Response JSON:
+{
+    "status": "success",
+    "message": "Address added successfully"
+}
+
+PUT /api/user/address
+- Deskripsi: Update alamat
+- Request Body: id_alamat, alamat, kota, provinsi, kode_pos
+- Response JSON:
+{
+    "status": "success",
+    "message": "Address updated successfully"
+}
+
+DELETE /api/user/address
+- Deskripsi: Hapus alamat
+- Request Body: id_alamat
+- Response JSON:
+{
+    "status": "success",
+    "message": "Address deleted successfully"
+}
+
+GET /api/user/address
+- Deskripsi: Mendapatkan detail alamat
+- Response JSON:
+{
+    "status": "success",
+    "data": {
+        "id_alamat": 1,
+        "alamat": "Jl. Contoh No. 123",
+        "kota": "Kebumen",
+        "provinsi": "Jawa Tengah",
+        "kode_pos": "54321"
+    }
+}
+
+POST /api/user/change-password
+- Deskripsi: Ubah password user
+- Request Body: current_password, new_password
+- Response JSON:
+{
+    "status": "success",
+    "message": "Password changed successfully"
+}
+
+6. ORDER API
+-------------
+
+POST /api/orders/create
+- Deskripsi: Membuat order baru
+- Request Body: items[], shipping_address, payment_method
+- Response JSON:
+{
+    "status": "success",
+    "message": "Order created successfully",
+    "data": {
+        "id_order": 123,
+        "total": 150000,
+        "status": "waiting"
+    }
+}
+
+POST /api/orders/buy-now
+- Deskripsi: Checkout langsung (buy now)
+- Request Body: id_produk, jumlah, shipping_address, payment_method
+- Response JSON:
+{
+    "status": "success",
+    "message": "Order created successfully",
+    "data": {
+        "id_order": 123,
+        "total": 150000,
+        "status": "waiting"
+    }
+}
+
+GET /api/orders/waiting
+- Deskripsi: Mendapatkan order yang menunggu
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_order": 123,
+            "total": 150000,
+            "status": "waiting",
+            "created_at": "2023-01-01 10:00:00"
+        }
+    ]
+}
+
+POST /api/orders/cancel/{id}
+- Deskripsi: Membatalkan order
+- Parameter: id (integer) - ID order
+- Response JSON:
+{
+    "status": "success",
+    "message": "Order cancelled successfully"
+}
+
+GET /api/orders/my-orders
+- Deskripsi: Mendapatkan order milik user
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_order": 123,
+            "total": 150000,
+            "status": "delivered",
+            "created_at": "2023-01-01 10:00:00"
+        }
+    ]
+}
+
+7. COURIER API
+---------------
+
+GET /api/kurir/my-deliveries
+- Deskripsi: Mendapatkan delivery kurir
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id_order": 123,
+            "customer_name": "John Doe",
+            "total": 150000,
+            "status": "assigned",
+            "created_at": "2023-01-01 10:00:00"
+        }
+    ]
+}
+
+POST /api/kurir/accept/{id}
+- Deskripsi: Terima order
+- Parameter: id (integer) - ID order
+- Response JSON:
+{
+    "status": "success",
+    "message": "Order accepted"
+}
+
+POST /api/kurir/start/{id}
+- Deskripsi: Mulai pengiriman
+- Parameter: id (integer) - ID order
+- Response JSON:
+{
+    "status": "success",
+    "message": "Delivery started"
+}
+
+POST /api/kurir/complete/{id}
+- Deskripsi: Selesaikan pengiriman
+- Parameter: id (integer) - ID order
+- Response JSON:
+{
+    "status": "success",
+    "message": "Delivery completed"
+}
+
+POST /api/courier/update-status
+- Deskripsi: Update status kurir
+- Request Body: status, location
+- Response JSON:
+{
+    "status": "success",
+    "message": "Status updated"
+}
+
+POST /api/courier/location
+- Deskripsi: Update lokasi kurir
+- Request Body: latitude, longitude
+- Response JSON:
+{
+    "status": "success",
+    "message": "Location updated"
+}
+
+GET /api/courier/stats
+- Deskripsi: Mendapatkan statistik kurir
+- Response JSON:
+{
+    "status": "success",
+    "data": {
+        "total_deliveries": 50,
+        "completed_deliveries": 45,
+        "pending_deliveries": 5,
+        "total_earnings": 2500000
+    }
+}
+
+8. AUTO ASSIGN COURIER SYSTEM
+-----------------------------
+
+POST /api/orders/auto-assign-courier
+- Deskripsi: Auto assign kurir setelah order dibuat
+- Response JSON:
+{
+    "status": "success",
+    "message": "Courier assigned automatically"
+}
+
+POST /api/kurir/respond
+- Deskripsi: Kurir merespon order (accept/reject)
+- Request Body: id_order, response (accept/reject)
+- Response JSON:
+{
+    "status": "success",
+    "message": "Response recorded"
+}
+
+GET /api/kurir/notifications
+- Deskripsi: Mendapatkan notifikasi kurir
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "message": "New order available",
+            "id_order": 123,
+            "created_at": "2023-01-01 10:00:00"
+        }
+    ]
+}
+
+POST /api/orders/assign-timeout
+- Deskripsi: Handle timeout ketika kurir tidak merespon
+- Response JSON:
+{
+    "status": "success",
+    "message": "Timeout handled"
+}
+
+9. CHAT API
+------------
+
+POST /api/chat/send
+- Deskripsi: Kirim pesan
+- Request Body: id_order, message, sender_type
+- Response JSON:
+{
+    "status": "success",
+    "message": "Message sent"
+}
+
+GET /api/chat/messages/{id}
+- Deskripsi: Mendapatkan pesan untuk order
+- Parameter: id (integer) - ID order
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "message": "Pesan contoh",
+            "sender": "customer",
+            "created_at": "2023-01-01 10:00:00"
+        }
+    ]
+}
+
+GET /api/chat/courier/{id}
+- Deskripsi: Mendapatkan info kurir
+- Parameter: id (integer) - ID kurir
+- Response JSON:
+{
+    "status": "success",
+    "data": {
+        "id": 1,
+        "name": "Courier Name",
+        "phone": "08123456789",
+        "location": {
+            "latitude": -7.1234,
+            "longitude": 110.1234
+        }
+    }
+}
+
+GET /api/chat/list
+- Deskripsi: Mendapatkan daftar chat
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "type": "order",
+            "chat_id": "123",
+            "last_message": "Pesan terakhir",
+            "updated_at": "2023-01-01 10:00:00"
+        }
+    ]
+}
+
+GET /api/chat/messages/{type}/{id}
+- Deskripsi: Mendapatkan pesan untuk chat tertentu
+- Parameter: type (string) - tipe chat, id (string) - ID chat
+- Response JSON:
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "message": "Pesan contoh",
+            "sender": "customer",
+            "created_at": "2023-01-01 10:00:00"
+        }
+    ]
+}
+
+POST /api/chat/send/{type}/{id}
+- Deskripsi: Kirim pesan untuk chat tertentu
+- Parameter: type (string) - tipe chat, id (string) - ID chat
+- Request Body: message
+- Response JSON:
+{
+    "status": "success",
+    "message": "Message sent"
+}
+
+10. DISTANCE API
+-----------------
+
+GET /api/jarak atau POST /api/jarak
+- Deskripsi: Menghitung jarak/rute
+- Request Body: origin, destination (untuk POST)
+- Response JSON:
+{
+    "status": "success",
+    "data": {
+        "distance": 5.2,
+        "duration": "15 menit",
+        "route": "Rute yang disarankan"
+    }
+}
+
+11. CONFIGURATION API
+---------------------
+
+GET /api/tarif
+- Deskripsi: Mendapatkan konfigurasi tarif
+- Response JSON:
+{
+    "status": "success",
+    "data": {
+        "base_min": 5000,
+        "per_km": 2000,
+        "heavy_per_kg_per_km": 300,
+        "heavy_keywords": ["kulkas","lemari","ac","mesin cuci","tv","televisi","sofa","rak","freezer"]
+    }
+}
+
+12. UTILITY API
+---------------
+
+GET /api/test
+- Deskripsi: Test endpoint
+- Response JSON:
+{
+    "status": "success",
+    "message": "API is working",
+    "timestamp": "2023-01-01 10:00:00"
+}
+
+GET /api/debug/session
+- Deskripsi: Debug session
+- Response JSON:
+{
+    "status": "success",
+    "session_id": "abc123",
+    "session_data": {...},
+    "cookies": {...},
+    "user_id": 1,
+    "message": "Session debug info"
+}
+
+13. IMAGE SERVING
+------------------
+
+GET /imagez/usertoko/produk/{filename}
+- Deskripsi: Serve gambar produk
+- Response: Binary image data dengan appropriate Content-Type
+
+============================
+CATATAN:
+- Semua response memiliki format standar dengan "status" dan "message" atau "data"
+- Untuk error, status akan bernilai "error" dengan pesan error yang sesuai
+- Session diperlukan untuk sebagian besar endpoint (kecuali public endpoints)
+- File gambar disajikan dari folder /imagez/usertoko/produk/
